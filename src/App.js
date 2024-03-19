@@ -1,22 +1,19 @@
-import logo from "./logo.svg";
-import "./App.css";
+import React from "react";
+import { AuthProvider } from "./context/AuthContext";
+import Button from "./components/Button";
+import DisplayAuthenticated from "./components/DisplayAuthenticated";
+import { authenticateUser } from "./utils/authenticateUser";
 
-function App() {
+const App = () => {
   return (
-    <div className='App'>
-      <header className='App-header'>
-        <img src={logo} className='App-logo' alt='logo' />
-
-        <a
-          className='App-link'
-          href='https://reactjs.org'
-          target='_blank'
-          rel='noopener noreferrer'>
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthProvider
+      onLogin={() => console.log("Logged in")}
+      onLogout={() => console.log("Logged out")}
+      defaultAuthenticated={authenticateUser()}>
+      <DisplayAuthenticated />
+      <Button />
+    </AuthProvider>
   );
-}
+};
 
 export default App;
