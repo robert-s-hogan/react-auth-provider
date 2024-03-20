@@ -13,7 +13,6 @@ To use the AuthContext in your project, start by copying the code into your proj
 Wrap your application or the part of it that requires authentication state with the AuthProvider component. You can customize the behavior by passing onLogin, onLogout, and defaultAuthenticated props to the AuthProvider.
 
 ```jsx
-Copy code
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { AuthProvider } from './path/to/AuthProvider';
@@ -35,7 +34,6 @@ ReactDOM.render(
 To access the authentication state and methods (login and logout) in your components, use the useContext hook with AuthContext.
 
 ```jsx
-Copy code
 import React, { useContext } from 'react';
 import { AuthContext } from './path/to/AuthProvider';
 
