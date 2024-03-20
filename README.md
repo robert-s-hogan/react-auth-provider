@@ -1,70 +1,71 @@
-# Getting Started with Create React App
+Authentication Context for React Applications
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Overview
 
-## Available Scripts
+This package provides a simple and reusable context for managing authentication states in React applications. It exports an AuthContext and an AuthProvider component to wrap your application or specific parts of it, providing an easy way to handle user authentication.
 
-In the project directory, you can run:
+Getting Started
 
-### `npm start`
+Installation
+To use the AuthContext in your project, start by copying the code into your project's structure, ideally in a contexts or providers directory.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Usage
+Wrap your application or the part of it that requires authentication state with the AuthProvider component. You can customize the behavior by passing onLogin, onLogout, and defaultAuthenticated props to the AuthProvider.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+jsx
+Copy code
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { AuthProvider } from './path/to/AuthProvider';
+import App from './App';
 
-### `npm test`
+ReactDOM.render(
+  <AuthProvider
+    onLogin={() => console.log('Login successful')}
+    onLogout={() => console.log('Logged out')}
+    defaultAuthenticated={false}
+  >
+    <App />
+  </AuthProvider>,
+  document.getElementById('root')
+);
+Accessing Authentication State and Methods
+To access the authentication state and methods (login and logout) in your components, use the useContext hook with AuthContext.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+jsx
+Copy code
+import React, { useContext } from 'react';
+import { AuthContext } from './path/to/AuthProvider';
 
-### `npm run build`
+const MyComponent = () => {
+  const { authenticated, login, logout } = useContext(AuthContext);
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  return (
+    <div>
+      {authenticated ? (
+        <>
+          <p>User is logged in</p>
+          <button onClick={logout}>Log out</button>
+        </>
+      ) : (
+        <>
+          <p>User is logged out</p>
+          <button onClick={login}>Log in</button>
+        </>
+      )}
+    </div>
+  );
+};
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+export default MyComponent;
+Props
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The AuthProvider component accepts the following props:
 
-### `npm run eject`
+children: The components that are wrapped by the AuthProvider.
+onLogin: A callback function that is called when the login method is invoked.
+onLogout: A callback function that is called when the logout method is invoked.
+defaultAuthenticated: A boolean indicating the initial authentication state.
+Contributing
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Feel free to contribute by submitting pull requests or creating issues for bugs and feature requests.
