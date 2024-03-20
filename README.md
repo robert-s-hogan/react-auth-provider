@@ -15,7 +15,7 @@ Wrap your application or the part of it that requires authentication state with 
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { AuthProvider } from './path/to/AuthProvider';
+import { AuthProvider } from "./context/AuthContext";
 import App from './App';
 
 ReactDOM.render(
@@ -35,7 +35,7 @@ To access the authentication state and methods (login and logout) in your compon
 
 ```jsx
 import React, { useContext } from 'react';
-import { AuthContext } from './path/to/AuthProvider';
+import { AuthProvider } from "./context/AuthContext";
 
 const MyComponent = () => {
   const { authenticated, login, logout } = useContext(AuthContext);
