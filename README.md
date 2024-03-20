@@ -1,18 +1,18 @@
-Authentication Context for React Applications
+# Authentication Context for React Applications
 
-Overview
+## Overview
 
 This package provides a simple and reusable context for managing authentication states in React applications. It exports an AuthContext and an AuthProvider component to wrap your application or specific parts of it, providing an easy way to handle user authentication.
 
-Getting Started
+## Getting Started
 
-Installation
+## Installation
 To use the AuthContext in your project, start by copying the code into your project's structure, ideally in a contexts or providers directory.
 
-Usage
+## Usage
 Wrap your application or the part of it that requires authentication state with the AuthProvider component. You can customize the behavior by passing onLogin, onLogout, and defaultAuthenticated props to the AuthProvider.
 
-jsx
+```jsx
 Copy code
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -29,10 +29,12 @@ ReactDOM.render(
   </AuthProvider>,
   document.getElementById('root')
 );
-Accessing Authentication State and Methods
+```
+
+## Accessing Authentication State and Methods
 To access the authentication state and methods (login and logout) in your components, use the useContext hook with AuthContext.
 
-jsx
+```jsx
 Copy code
 import React, { useContext } from 'react';
 import { AuthContext } from './path/to/AuthProvider';
@@ -58,8 +60,9 @@ const MyComponent = () => {
 };
 
 export default MyComponent;
-Props
+```
 
+## Props
 The AuthProvider component accepts the following props:
 
 children: The components that are wrapped by the AuthProvider.
